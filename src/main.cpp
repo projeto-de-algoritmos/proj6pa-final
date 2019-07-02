@@ -8,7 +8,7 @@ void list_subejcts2(priority_queue<Subject> subjects_to_do);
 void list_subejcts(vector<Subject> subjects);
 vector<Subject> subject_generate();
 
-int main(){ 
+int main(){
     while(1){
         system("clear");
         // O teste está com base de que o estudante deseja pegar no máximo
@@ -29,8 +29,8 @@ int main(){
         list_subejcts(subjects);
         while(1){
             char in[50];
-            cout << "Insira o ID da matéria desejada."<<endl;
-            cout<<"ID: ";
+            cout << "\x1B[47m\x1B[30mInsira o ID da matéria desejada. Digite 'exit' para sair."<<endl;
+            cout<<"ID: \033[0m";
             cin >> in;
             getchar();
             i = atoi(in);
@@ -41,15 +41,15 @@ int main(){
                 break;
             }
             else{
-                cout << "Este ID não é válido.\n" << "Insira novamente.";
+                cout << "\x1B[41m\x1B[37mEste ID não é válido." << "Tente novamente.\033[0m"<<endl;
             }
         }
-        cout << "Matéria desejada: " << subjects[i-1].name << endl << endl;
+        cout <<"\x1B[44m\x1B[37m"<< "Matéria desejada:" << subjects[i-1].name <<" \033[0m"<< endl << endl;
         priority_queue<Subject> subject_order = bfs_changed(subjects[i-1]);
         
         show_schedule(subject_order, &subjects, 6);
         cout<<endl;
-        cout<<"Pressione ENTER para continuar..."<<endl;
+        cout<<"\x1B[42m\x1B[30mPressione ENTER para continuar...\033[0m"<<endl;
         getchar();
     }
   
@@ -61,15 +61,17 @@ void show(){
 }
 
 void list_subejcts(vector<Subject> subjects){
-    for (int i = 0; i < 68; i++){
-        cout<<"##";
+    for (int i = 0; i < 75; i++){
+        cout<<"\x1B[44m  \033[0m";
     }
-    cout<<"#"<<endl;
-    cout<<"############################################################FLUXO MAKER##################################################################"<<endl;
-    for (int i = 0; i < 68; i++){
-        cout<<"##";
+    cout<<"\x1B[44m \033[0m"<<endl;
+    cout<<"\x1B[44m                                                             \033[0m";
+    cout<<"\x1B[40mFLUXO MAKER\033[0m";
+    cout<<"\x1B[44m                                                                               \033[0m"<<endl;
+    for (int i = 0; i < 75; i++){
+        cout<<"\x1B[44m  \033[0m";
     }
-    cout<<"#"<<endl;
+    cout<<"\x1B[44m \033[0m"<<endl;
 
     int i, coluna2 = 20;
     string texto(64, ' '); //= "                                                           ";
@@ -91,13 +93,13 @@ void list_subejcts(vector<Subject> subjects){
             begin++;
         }
         texto2[begin] = '\0';
-        cout << "#\t" << setw(2) << setfill('0') << i+1 << " - " << texto <<"\t"<<coluna2+1<< " - "<< texto2<<"\t#"<<endl;
+        cout << "\x1B[44m  \033[0m\t\x1B[37m" << setw(2) << setfill('0') << i+1 << " - " << texto <<"\t"<<coluna2+1<< " - "<< texto2<<"\033[0m\t\x1B[44m               \033[0m"<<endl;
     }
-    cout<<"#                                                          "<<"\t\t\t"<<coluna2+1<< " - "<<subjects[coluna2].name<<"\t\t\t\t#"<<endl;
-    for (int i = 0; i < 68; i++){
-        cout<<"##";
+    cout<<"\x1B[44m  \033[0m                                                          \x1B[37m"<<"\t\t\t"<<coluna2+1<< " - "<<subjects[coluna2].name<<"\033[0m\t\t\t\t\x1B[44m               \033[0m"<<endl;
+    for (int i = 0; i < 75; i++){
+        cout<<"\x1B[44m  \033[0m";
     }
-    cout<<"#"<<endl;
+    cout<<"\x1B[44m \033[0m"<<endl;
 }
 
 vector<Subject> subject_generate(){
