@@ -61,6 +61,9 @@ void Subject::count_prerequisites(Subject *subject){
 
 bool Subject::operator<(const Subject &subject) const{
 	if(quantity_prerequisites==subject.quantity_prerequisites){
+		if(credits == subject.credits){
+			return name > subject.name;
+		}
 		return credits < subject.credits;
 	}
 	return quantity_prerequisites > subject.quantity_prerequisites;

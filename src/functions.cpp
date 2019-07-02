@@ -1,6 +1,7 @@
 #include "subject.hpp"
 #include "functions.hpp"
 #include <bits/stdc++.h>
+#include <typeinfo>
 #define debug(x) cerr << #x << ": " << x << endl;
 #define debug_sub(x) cerr << #x << ": " << x.name << " " << x.code << " " << x.credits << " " << x.quantity_prerequisites << endl;
 
@@ -82,9 +83,8 @@ void show_schedule(priority_queue<Subject> subjects_order, vector<Subject> *subj
 
 		semester_subjects = complete_schedule(semester_subjects, subjects_to_do, &concluded_subjects, total_credits, max_subjects);
 		if(semester == 1)
-			cout << "--------------------------------------------------\n";
 		total_credits = 0;
-		cout << semester << "º semester:\n";
+		cout <<"\x1B[41m\x1B[37m"<< semester << "º semestre:\033[0m\n";
 		while(!semester_subjects.empty()){
 			auto subject = semester_subjects.front();
 			cout << subject.name << endl;
@@ -92,8 +92,7 @@ void show_schedule(priority_queue<Subject> subjects_order, vector<Subject> *subj
 			total_credits+= subject.credits;
 			semester_subjects.pop();
 		}
-		cout << "Total credits: " << total_credits << endl;
-		cout << "--------------------------------------------------\n";
+		cout << "Total de Créditos: " << total_credits <<endl;
 	}
 }
 
