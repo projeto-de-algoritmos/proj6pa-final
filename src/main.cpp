@@ -113,7 +113,7 @@ vector<Subject> subject_generate(){
     inicial_subjects.insert(ts = new Subject("Testes de Software", 206580, 4));
     inicial_subjects.insert(mds = new Subject("Métodos de Desenvolvimento de Software", 193640, 4));
     inicial_subjects.insert(oo = new Subject("Orientação a Objetos", 195341, 4));
-    inicial_subjects.insert(apc = new Subject("Algorítmos e Programação de Computadores", 12345, 6));
+    inicial_subjects.insert(apc = new Subject("Algoritmos e Programação de Computadores", 12345, 6));
     inicial_subjects.insert(comp = new Subject("Compiladores 1", 101095, 4));
     inicial_subjects.insert(ed1 = new Subject("Estrutura de Dados 1", 193704, 4));
     inicial_subjects.insert(pp = new Subject("Paradigmas de Programação", 203904, 4));
@@ -131,14 +131,14 @@ vector<Subject> subject_generate(){
     inicial_subjects.insert(sbd1 = new Subject("Sistemas de Banco de Dados 1", 193631, 4));
     inicial_subjects.insert(md2 = new Subject("Matemática Discreta 2", 127698, 4));
     inicial_subjects.insert(md1 = new Subject("Matemática Discreta 1", 120669, 4));
-    inicial_subjects.insert(pa = new Subject("Projeto de Algorítmos", 130508, 4));
+    inicial_subjects.insert(pa = new Subject("Projeto de Algoritmos", 130508, 4));
     inicial_subjects.insert(qs = new Subject("Qualidade de Software", 208698, 4));
     inicial_subjects.insert(gpq = new Subject("Gestão da Produção e Qualidade", 201626, 4));
     inicial_subjects.insert(ee = new Subject("Engenharia Econômica", 193321, 4));
     inicial_subjects.insert(ihc = new Subject("Interação Humano Computador", 201316, 4));
     inicial_subjects.insert(diac = new Subject("Desenho Industrial Assistido por computador", 199176, 6));
     inicial_subjects.insert(hc = new Subject("Humanidades e Cidadania", 199133, 4));
-    inicial_subjects.insert(mne = new Subject("Métodos Númericos para Engenharia", 195413, 4));
+    inicial_subjects.insert(mne = new Subject("Métodos Numéricos para Engenharia", 195413, 4));
     inicial_subjects.insert(c2 = new Subject("Cálculo 2", 113042, 6));
     inicial_subjects.insert(c1 = new Subject("Cálculo 1", 113034, 6));
     inicial_subjects.insert(f1 = new Subject("Física 1", 118001, 4));
