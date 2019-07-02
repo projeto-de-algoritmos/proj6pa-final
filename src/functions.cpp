@@ -1,6 +1,7 @@
 #include "subject.hpp"
 #include "functions.hpp"
 #include <bits/stdc++.h>
+#include <typeinfo>
 #define debug(x) cerr << #x << ": " << x << endl;
 #define debug_sub(x) cerr << #x << ": " << x.name << " " << x.code << " " << x.credits << " " << x.quantity_prerequisites << endl;
 

@@ -1,6 +1,7 @@
 #include "subject.hpp"
 #include "functions.hpp"
 #include <bits/stdc++.h>
+#include <stdlib.h>
 
 using namespace std;
 void list_subejcts2(priority_queue<Subject> subjects_to_do);
@@ -8,48 +9,97 @@ void list_subejcts(vector<Subject> subjects);
 vector<Subject> subject_generate();
 
 int main(){ 
-
-    // O teste está com base de que o estudante deseja pegar no máximo
-    // 6 matérias por semestre. Para alterar esse valor, basta mudar o
-    // último argumento passado na função show_schedule
-
-    vector<Subject> subjects = subject_generate();
-
-    cerr << "_------------------------------------------------_\n";
-    for(auto subj : subjects){
-        cerr << subj.name << " Credits = " << subj.credits << " Qnt pre = " << subj.quantity_prerequisites << endl;
-    }
-    cerr << "_------------------------------------------------_\n\n\n";
-    
-    sort(subjects.begin(), subjects.end());
-    list_subejcts(subjects);
-
-    int i;
-    cout << "Insert the subject ID: ";
     while(1){
-        cin >> i;
-        if(i>0&&i<=int(subjects.size())){
-            cout << "Valid ID\n\n";
-            break;
+        system("clear");
+        // O teste está com base de que o estudante deseja pegar no máximo
+        // 6 matérias por semestre. Para alterar esse valor, basta mudar o
+        // último argumento passado na função show_schedule
+
+        vector<Subject> subjects = subject_generate();
+
+        
+        sort(subjects.begin(), subjects.end());
+        /*cerr << "_------------------------------------------------_\n";
+        for(auto subj : subjects){
+            cerr << subj.name << " Credits = " << subj.credits << " Qnt pre = " << subj.quantity_prerequisites << endl;
         }
-        else{
-            cout << "ID not valid\n" << "Insert again: ";
+        cerr << "_------------------------------------------------_\n\n\n";*/
+        list_subejcts(subjects);
+        
+
+        char in[50];
+        int i;
+        cout << "Insira o ID da matéria desejada."<<endl;
+        
+        while(1){
+            cout<<"ID: ";
+            cin >> in;
+            getchar();
+            i = atoi(in);
+            if(!strcmp(in, "exit"))
+                return 0;
+            if(i>0&&i<=int(subjects.size())){
+                system("clear");
+                break;
+            }
+            else{
+                cout << "Este ID não é válido.\n" << "Insira novamente.";
+            }
         }
+        cout << "Matéria desejada: " << subjects[i-1].name << endl << endl;
+        priority_queue<Subject> subject_order = bfs_changed(subjects[i-1]);
+        reverse(subjects.begin(), subjects.end());
+        show_schedule(subject_order, &subjects, 6);
+        cout<<endl;
+        cout<<"Pressione ENTER para continuar..."<<endl;
+        getchar();
     }
-    cout << "Desired subject: " << subjects[subjects.size()-i].name << endl << endl;
-    priority_queue<Subject> subject_order = bfs_changed(subjects[subjects.size()-i]);
-    reverse(subjects.begin(), subjects.end());
-    show_schedule(subject_order, &subjects, 6);
   
     return 0;
 }
 
+void show(){
+    
+}
+
 void list_subejcts(vector<Subject> subjects){
-    int i, j;
-    for(i = subjects.size()-1, j = 1; i>=0; --i, ++j){
-        cout << j << " - " << subjects[i].name << endl;
+    for (int i = 0; i < 68; i++){
+        cout<<"##";
     }
-    cout << endl;
+    cout<<"#"<<endl;
+    cout<<"############################################################FLUXO MAKER##################################################################"<<endl;
+    for (int i = 0; i < 68; i++){
+        cout<<"##";
+    }
+    cout<<"#"<<endl;
+
+    int i, coluna2 = 20;
+    std::string texto = "                                                           ";
+    std::string texto2 = "                                                           ";
+    const char *c_texto = texto.c_str();
+    const char *c_texto2 = texto2.c_str();
+    for(i = 0; coluna2<subjects.size() and i < 20; ++i, coluna2++){
+        texto = subjects[i].name.c_str();
+        int begin = texto.size();
+        while (begin < 64){
+            texto[begin] = ' ';
+            begin++;
+        }
+
+        texto2 = subjects[coluna2].name.c_str();
+        begin = texto2.size();
+        while (begin < 46){
+            texto2[begin] = ' ';
+            begin++;
+        }
+        texto2[begin] = '\0';
+        cout << "#\t" << i+1 << " - " <<c_texto<<"\t"<<coluna2+1<< " - "<<c_texto2<<"\t#"<<endl;
+    }
+    cout<<"#                                                          "<<"\t\t\t"<<coluna2+1<< " - "<<subjects[coluna2].name<<"\t\t\t\t#"<<endl;
+    for (int i = 0; i < 68; i++){
+        cout<<"##";
+    }
+    cout<<"#"<<endl;
 }
 
 vector<Subject> subject_generate(){
@@ -137,7 +187,7 @@ vector<Subject> subject_generate(){
     peae->insert_prerequisite(c1);
 
     for(auto subject : inicial_subjects){
-        cerr << subject->name << " na main\n";
+        //cerr << subject->name << " na main\n";
         subject->count_prerequisites(subject);
         final_subjects.push_back(*subject);
     }
