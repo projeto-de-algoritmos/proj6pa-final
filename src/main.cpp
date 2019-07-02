@@ -19,19 +19,17 @@ int main(){
 
         
         sort(subjects.begin(), subjects.end());
+        reverse(subjects.begin(), subjects.end());  
         /*cerr << "_------------------------------------------------_\n";
         for(auto subj : subjects){
             cerr << subj.name << " Credits = " << subj.credits << " Qnt pre = " << subj.quantity_prerequisites << endl;
         }
         cerr << "_------------------------------------------------_\n\n\n";*/
-        list_subejcts(subjects);
-        
-
-        char in[50];
         int i;
-        cout << "Insira o ID da matéria desejada."<<endl;
-        
+        list_subejcts(subjects);
         while(1){
+            char in[50];
+            cout << "Insira o ID da matéria desejada."<<endl;
             cout<<"ID: ";
             cin >> in;
             getchar();
@@ -48,7 +46,7 @@ int main(){
         }
         cout << "Matéria desejada: " << subjects[i-1].name << endl << endl;
         priority_queue<Subject> subject_order = bfs_changed(subjects[i-1]);
-        reverse(subjects.begin(), subjects.end());
+        
         show_schedule(subject_order, &subjects, 6);
         cout<<endl;
         cout<<"Pressione ENTER para continuar..."<<endl;
@@ -74,26 +72,26 @@ void list_subejcts(vector<Subject> subjects){
     cout<<"#"<<endl;
 
     int i, coluna2 = 20;
-    std::string texto = "                                                           ";
-    std::string texto2 = "                                                           ";
-    const char *c_texto = texto.c_str();
-    const char *c_texto2 = texto2.c_str();
+    string texto(64, ' '); //= "                                                           ";
+    string texto2(64, ' '); //= "                                                           ";
+    //const char *c_texto = texto.c_str();
+    //const char *c_texto2 = texto2.c_str();
     for(i = 0; coluna2<subjects.size() and i < 20; ++i, coluna2++){
-        texto = subjects[i].name.c_str();
+        texto = subjects[i].name;
         int begin = texto.size();
         while (begin < 64){
-            texto[begin] = ' ';
+            texto.push_back(' ');
             begin++;
         }
 
-        texto2 = subjects[coluna2].name.c_str();
+        texto2 = subjects[coluna2].name;
         begin = texto2.size();
         while (begin < 46){
-            texto2[begin] = ' ';
+            texto2.push_back(' ');
             begin++;
         }
         texto2[begin] = '\0';
-        cout << "#\t" << i+1 << " - " <<c_texto<<"\t"<<coluna2+1<< " - "<<c_texto2<<"\t#"<<endl;
+        cout << "#\t" << setw(2) << setfill('0') << i+1 << " - " << texto <<"\t"<<coluna2+1<< " - "<< texto2<<"\t#"<<endl;
     }
     cout<<"#                                                          "<<"\t\t\t"<<coluna2+1<< " - "<<subjects[coluna2].name<<"\t\t\t\t#"<<endl;
     for (int i = 0; i < 68; i++){
@@ -113,7 +111,7 @@ vector<Subject> subject_generate(){
     inicial_subjects.insert(ts = new Subject("Testes de Software", 206580, 4));
     inicial_subjects.insert(mds = new Subject("Métodos de Desenvolvimento de Software", 193640, 4));
     inicial_subjects.insert(oo = new Subject("Orientação a Objetos", 195341, 4));
-    inicial_subjects.insert(apc = new Subject("Algorítmos e Programação de Computadores", 12345, 4));
+    inicial_subjects.insert(apc = new Subject("Algorítmos e Programação de Computadores", 12345, 6));
     inicial_subjects.insert(comp = new Subject("Compiladores 1", 101095, 4));
     inicial_subjects.insert(ed1 = new Subject("Estrutura de Dados 1", 193704, 4));
     inicial_subjects.insert(pp = new Subject("Paradigmas de Programação", 203904, 4));
